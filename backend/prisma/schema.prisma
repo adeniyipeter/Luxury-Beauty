@@ -1,0 +1,199 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  passwordHash String
+  role         String        @default("CUSTOMER") // CUSTOMER, STAFF, ADMIN
+  firstName    String
+  lastName     String
+  phone        String?
+  avatarUrl    String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  customerProfile CustomerProfile?
+  staffProfile    StaffProfile?
+  appointments    Appointment[]   @relation("CustomerAppointments")
+  reviews         Review[]
+  notifications   Notification[]
+}
+
+model CustomerProfile {
+  id            String   @id @default(uuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address       String?
+  notes         String?
+  loyaltyPoints Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model StaffProfile {
+  id              String             @id @default(uuid())
+  userId          String             @unique
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title           String             @default("Beauty Specialist")
+  bio             String?
+  specialty       String?
+  rating          Float              @default(5.0)
+  experienceYears Int                @default(2)
+  isActive        Boolean            @default(true)
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  services        StaffService[]
+  availabilities  StaffAvailability[]
+  appointments    Appointment[]      @relation("StaffAppointments")
+}
+
+model ServiceCategory {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  sortOrder   Int       @default(0)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  services    Service[]
+}
+
+model Service {
+  id                   String          @id @default(uuid())
+  categoryId           String
+  category             ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name                 String
+  slug                 String          @unique
+  description          String
+  durationMinutes      Int             @default(60)
+  price                Float
+  imageUrl             String?
+  preparation          String?
+  aftercare            String?
+  isDisclaimerRequired Boolean         @default(false)
+  disclaimerText       String?
+  isActive             Boolean         @default(true)
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  staffMembers         StaffService[]
+  appointments         Appointment[]
+}
+
+model StaffService {
+  id             String       @id @default(uuid())
+  staffProfileId String
+  serviceId      String
+  staff          StaffProfile @relation(fields: [staffProfileId], references: [id], onDelete: Cascade)
+  service        Service      @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([staffProfileId, serviceId])
+}
+
+model StaffAvailability {
+  id             String       @id @default(uuid())
+  staffProfileId String
+  staff          StaffProfile @relation(fields: [staffProfileId], references: [id], onDelete: Cascade)
+  dayOfWeek      Int          // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+  startTime      String       // Format "09:00"
+  endTime        String       // Format "18:00"
+  isWorking      Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([staffProfileId, dayOfWeek])
+}
+
+model Appointment {
+  id                 String   @id @default(uuid())
+  appointmentNumber  String   @unique
+  customerId         String
+  customer           User     @relation("CustomerAppointments", fields: [customerId], references: [id], onDelete: Cascade)
+  staffId            String
+  staff              StaffProfile @relation("StaffAppointments", fields: [staffId], references: [id], onDelete: Cascade)
+  serviceId          String
+  service            Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  date               String   // YYYY-MM-DD
+  startTime          String   // HH:MM (24-hour format)
+  endTime            String   // HH:MM (24-hour format)
+  durationMinutes    Int
+  price              Float
+  status             String   @default("CONFIRMED") // PENDING, CONFIRMED, IN_PROGRESS, COMPLETED, CANCELLED, NO_SHOW
+  notes              String?
+  cancellationReason String?
+  paymentStatus      String   @default("PENDING") // PENDING, PAID, REFUNDED
+  paymentMethod      String?  @default("PAY_AT_SALON") // PAY_AT_SALON, CARD, ONLINE
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  review             Review?
+}
+
+model Review {
+  id            String      @id @default(uuid())
+  appointmentId String      @unique
+  appointment   Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  customerId    String
+  customer      User        @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  rating        Int         @default(5)
+  comment       String
+  isPublished   Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model GalleryImage {
+  id          String   @id @default(uuid())
+  title       String
+  category    String   // Hair, Nails, Makeup, Bridal, Beauty, Other
+  imageUrl    String
+  description String?
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Promotion {
+  id              String    @id @default(uuid())
+  code            String    @unique
+  title           String
+  description     String?
+  discountPercent Float?
+  discountAmount  Float?
+  startDate       DateTime?
+  endDate         DateTime?
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String   @default("INFO") // BOOKING, REMINDER, CANCEL, PROMO, SYSTEM
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+}
+
+model SalonSetting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
