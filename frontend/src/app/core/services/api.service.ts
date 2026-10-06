@@ -15,12 +15,13 @@ import {
   TimeSlot,
   ApiResponse,
 } from '../models';
+import { Apiurl } from '../../../../.env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:5060/api/v1';
+  private baseUrl = Apiurl;
 
   constructor(private http: HttpClient) {}
 

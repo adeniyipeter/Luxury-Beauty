@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { tap, catchError } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { User, UserRole, AuthResponse, ApiResponse } from '../models';
+import { Apiurl } from '../../../../.env';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5060/api/v1/auth';
+  private apiUrl = `${Apiurl}/auth`;
   private tokenKey = 'veya_auth_token';
 
   // Angular Signals for state management

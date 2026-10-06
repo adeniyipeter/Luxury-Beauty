@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
-  port: parseInt(process.env.PORT || '5060', 10),
+  port: parseInt(process.env.PORT || '5050', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
   jwtSecret: process.env.JWT_SECRET || 'veya_super_secret_jwt_key_2026_salon_app',
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
