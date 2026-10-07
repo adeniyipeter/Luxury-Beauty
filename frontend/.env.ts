@@ -1,1 +1,1 @@
-export const Apiurl = 'http://localhost:5000/api/v1';
+export const Apiurl = 'https://veya-backend-fi1p.onrender.com/api/v1';
