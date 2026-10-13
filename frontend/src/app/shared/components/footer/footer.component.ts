@@ -93,21 +93,37 @@ import { RouterModule } from '@angular/router';
     .footer {
       background-color: var(--color-primary);
       color: #FFFFFF;
-      padding: 5rem 0 2rem;
-      margin-top: 5rem;
+      padding: 3.5rem 0 1.5rem;
+      margin-top: 3.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+      @media (min-width: 768px) {
+        padding: 5rem 0 2rem;
+        margin-top: 5rem;
+      }
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1.2fr 1.8fr;
-      gap: 3rem;
-      margin-bottom: 3.5rem;
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 640px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+
+      @media (min-width: 992px) {
+        grid-template-columns: 2fr 1fr 1.2fr 1.8fr;
+        gap: 3rem;
+        margin-bottom: 3.5rem;
+      }
     }
 
     .footer-logo {
       font-family: var(--font-serif);
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: #FFFFFF;
       display: inline-block;
@@ -116,6 +132,10 @@ import { RouterModule } from '@angular/router';
       .logo-accent {
         color: var(--color-accent);
         font-style: italic;
+      }
+
+      @media (min-width: 640px) {
+        font-size: 1.7rem;
       }
     }
 
@@ -136,11 +156,11 @@ import { RouterModule } from '@angular/router';
 
     .social-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.85rem;
 
       a {
-        width: 38px;
-        height: 38px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.08);
         display: flex;
@@ -184,6 +204,8 @@ import { RouterModule } from '@angular/router';
         a {
           color: #C0B7B3;
           font-size: 0.92rem;
+          display: inline-block;
+          padding: 0.15rem 0;
 
           &:hover {
             color: var(--color-accent);
@@ -203,7 +225,8 @@ import { RouterModule } from '@angular/router';
 
       i {
         color: var(--color-accent);
-        margin-top: 0.2rem;
+        margin-top: 0.25rem;
+        flex-shrink: 0;
       }
     }
 
@@ -220,7 +243,8 @@ import { RouterModule } from '@angular/router';
 
       i {
         color: var(--color-accent);
-        margin-top: 0.2rem;
+        margin-top: 0.25rem;
+        flex-shrink: 0;
       }
 
       strong {
@@ -230,12 +254,21 @@ import { RouterModule } from '@angular/router';
 
     .footer-bottom {
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 1.75rem;
+      padding-top: 1.5rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
       color: #8C827E;
       font-size: 0.85rem;
+
+      @media (min-width: 640px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        padding-top: 1.75rem;
+      }
 
       p {
         color: #8C827E;
@@ -243,8 +276,14 @@ import { RouterModule } from '@angular/router';
 
       .legal-links {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
         gap: 0.75rem;
+
+        @media (min-width: 640px) {
+          justify-content: flex-end;
+        }
 
         a:hover {
           color: var(--color-accent);
@@ -253,25 +292,6 @@ import { RouterModule } from '@angular/router';
         .dot {
           opacity: 0.4;
         }
-      }
-    }
-
-    @media (max-width: 992px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
       }
     }
   `],

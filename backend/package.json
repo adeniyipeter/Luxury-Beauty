@@ -10,6 +10,7 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "ts-node prisma/seed.ts",
+    "seed:prod": "node dist/prisma/seed.js",
     "test": "ts-node test/booking-conflict.test.ts"
   },
   "keywords": ["salon", "booking", "veya", "express", "prisma"],

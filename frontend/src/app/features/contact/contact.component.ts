@@ -132,96 +132,174 @@ import { FormsModule } from '@angular/forms';
   styles: [`
     .page-header {
       background: linear-gradient(180deg, #FFFFFF 0%, var(--color-bg) 100%);
-      padding: 4.5rem 0 3rem;
+      padding: 2.5rem 0 1.75rem;
       border-bottom: 1px solid var(--color-border);
-      h1 { margin: 0.75rem 0 0.5rem; }
-      p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+      @media (min-width: 768px) {
+        padding: 4.5rem 0 3rem;
+      }
+
+      h1 { margin: 0.5rem 0; }
+      p {
+        font-size: 0.95rem;
+        max-width: 600px;
+        margin: 0 auto;
+
+        @media (min-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
     }
 
     .contact-section {
-      padding: 4.5rem 0 6rem;
+      padding: 2rem 0 3.5rem;
+
+      @media (min-width: 768px) {
+        padding: 4.5rem 0 6rem;
+      }
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 3.5rem;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
       align-items: start;
+
+      @media (min-width: 992px) {
+        grid-template-columns: 1fr 1.25fr;
+        gap: 3.5rem;
+      }
     }
 
     .info-card, .form-card {
-      padding: 2.5rem;
+      padding: 1.25rem;
+
+      @media (min-width: 640px) {
+        padding: 2rem;
+      }
+
+      @media (min-width: 992px) {
+        padding: 2.5rem;
+      }
 
       h2 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         margin-bottom: 0.5rem;
+
+        @media (min-width: 768px) {
+          font-size: 1.8rem;
+        }
       }
 
       .lead {
-        margin-bottom: 2rem;
-        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+
+        @media (min-width: 768px) {
+          margin-bottom: 2rem;
+          font-size: 0.95rem;
+        }
       }
     }
 
     .detail-item {
       display: flex;
       align-items: flex-start;
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+
+      @media (min-width: 768px) {
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+      }
 
       .icon-wrap {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         background: var(--color-surface-alt);
         color: var(--color-accent);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         flex-shrink: 0;
+
+        @media (min-width: 768px) {
+          width: 44px;
+          height: 44px;
+          font-size: 1.2rem;
+        }
       }
 
       strong {
         display: block;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         color: var(--color-primary);
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.15rem;
+
+        @media (min-width: 768px) {
+          font-size: 0.95rem;
+          margin-bottom: 0.2rem;
+        }
       }
 
       p {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         margin: 0;
+
+        @media (min-width: 768px) {
+          font-size: 0.9rem;
+        }
       }
     }
 
     .hours-card {
       background: var(--color-surface-alt);
       border-radius: var(--radius-sm);
-      padding: 1.25rem;
-      margin: 1.5rem 0;
+      padding: 1rem;
+      margin: 1.25rem 0;
+
+      @media (min-width: 768px) {
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+      }
 
       h3 {
-        font-size: 1.05rem;
+        font-size: 1rem;
         margin-bottom: 0.75rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+
+        @media (min-width: 768px) {
+          font-size: 1.05rem;
+        }
+
         i { color: var(--color-accent); }
       }
 
       .h-row {
         display: flex;
-        justify-content: space-between;
-        font-size: 0.88rem;
-        margin-bottom: 0.4rem;
+        flex-direction: column;
+        gap: 0.2rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+
+        @media (min-width: 480px) {
+          flex-direction: row;
+          justify-content: space-between;
+          font-size: 0.88rem;
+          margin-bottom: 0.4rem;
+        }
+
         span { color: var(--color-text-secondary); }
         strong { color: var(--color-primary); }
       }
     }
 
     .map-placeholder {
-      height: 140px;
+      height: 120px;
       border-radius: var(--radius-sm);
       background: linear-gradient(135deg, #2B211E 0%, #46342E 100%);
       color: #FFFFFF;
@@ -230,9 +308,16 @@ import { FormsModule } from '@angular/forms';
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
 
-      i { font-size: 2rem; color: var(--color-accent); }
+      @media (min-width: 768px) {
+        height: 140px;
+        font-size: 0.9rem;
+      }
+
+      i { font-size: 1.75rem; color: var(--color-accent); }
     }
 
     .alert {
@@ -248,12 +333,6 @@ import { FormsModule } from '@angular/forms';
         background: var(--color-success-bg);
         color: var(--color-success);
         i { font-size: 1.2rem; }
-      }
-    }
-
-    @media (max-width: 900px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
       }
     }
   `],

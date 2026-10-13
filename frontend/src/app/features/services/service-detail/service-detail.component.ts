@@ -144,23 +144,41 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
     }
 
     .detail-hero-section {
-      padding: 3.5rem 0;
+      padding: 2rem 0;
+
+      @media (min-width: 768px) {
+        padding: 3.5rem 0;
+      }
     }
 
     .detail-grid {
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 3.5rem;
+      grid-template-columns: 1fr;
+      gap: 2rem;
       align-items: start;
+
+      @media (min-width: 900px) {
+        grid-template-columns: 1fr 1.15fr;
+        gap: 3.5rem;
+      }
     }
 
     .detail-image-wrap {
-      position: sticky;
-      top: 100px;
+      position: relative;
+      height: 260px;
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-md);
-      height: 480px;
+
+      @media (min-width: 640px) {
+        height: 360px;
+      }
+
+      @media (min-width: 900px) {
+        position: sticky;
+        top: 100px;
+        height: 480px;
+      }
 
       .detail-hero-img {
         width: 100%;
@@ -170,35 +188,49 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
       .cat-badge {
         position: absolute;
-        top: 1.25rem;
-        left: 1.25rem;
+        top: 1rem;
+        left: 1rem;
+
+        @media (min-width: 640px) {
+          top: 1.25rem;
+          left: 1.25rem;
+        }
       }
     }
 
     .detail-summary {
       display: flex;
       flex-direction: column;
-      gap: 1.75rem;
+      gap: 1.5rem;
+
+      @media (min-width: 640px) {
+        gap: 1.75rem;
+      }
 
       .service-title {
-        font-size: 2.4rem;
+        font-size: clamp(1.75rem, 4.5vw, 2.4rem);
         line-height: 1.2;
       }
     }
 
     .pricing-card {
-      padding: 1.75rem;
+      padding: 1.25rem;
       background: var(--color-surface-alt);
       border-color: rgba(201, 143, 145, 0.4);
+
+      @media (min-width: 640px) {
+        padding: 1.75rem;
+      }
 
       .price-row {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        gap: 1rem;
         margin-bottom: 1.25rem;
 
         .price-label {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           color: var(--color-text-secondary);
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -206,7 +238,7 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
         .price-value {
           font-family: var(--font-serif);
-          font-size: 2.2rem;
+          font-size: clamp(1.75rem, 5vw, 2.2rem);
           font-weight: 700;
           color: var(--color-primary);
           line-height: 1;
@@ -215,13 +247,14 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
         .duration-box {
           display: flex;
           align-items: center;
-          gap: 0.4rem;
-          font-size: 0.95rem;
+          gap: 0.35rem;
+          font-size: 0.88rem;
           color: var(--color-text-secondary);
           background: #FFFFFF;
-          padding: 0.4rem 0.8rem;
+          padding: 0.35rem 0.75rem;
           border-radius: var(--radius-full);
           border: 1px solid var(--color-border);
+          white-space: nowrap;
 
           i { color: var(--color-accent); }
         }
@@ -234,13 +267,18 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
     .content-block {
       h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.6rem;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
       }
 
       p {
-        font-size: 1rem;
-        line-height: 1.7;
+        font-size: 0.95rem;
+        line-height: 1.65;
+
+        @media (min-width: 640px) {
+          font-size: 1rem;
+          line-height: 1.7;
+        }
       }
     }
 
@@ -248,7 +286,7 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       background: #FFF8E1;
       border: 1px solid #FFE082;
       border-radius: var(--radius-sm);
-      padding: 1.25rem;
+      padding: 1.15rem;
       color: #795548;
 
       .disclaimer-header {
@@ -256,12 +294,12 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
         align-items: center;
         gap: 0.5rem;
         margin-bottom: 0.4rem;
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         color: #E65100;
       }
 
       p {
-        font-size: 0.88rem;
+        font-size: 0.85rem;
         color: #5D4037;
         margin: 0;
       }
@@ -271,10 +309,14 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       margin-top: 0.5rem;
 
       .care-card {
-        padding: 1.25rem;
+        padding: 1.15rem;
+
+        @media (min-width: 640px) {
+          padding: 1.25rem;
+        }
 
         h4 {
-          font-size: 1.05rem;
+          font-size: 1rem;
           margin-bottom: 0.4rem;
           display: flex;
           align-items: center;
@@ -293,9 +335,13 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
     }
 
     .specialists-section {
-      padding: 4rem 0;
+      padding: 3rem 0;
       background: #FFFFFF;
       border-top: 1px solid var(--color-border);
+
+      @media (min-width: 768px) {
+        padding: 4rem 0;
+      }
     }
 
     .staff-card {
@@ -305,15 +351,23 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
       .staff-avatar {
         width: 100%;
-        height: 220px;
+        height: 200px;
         object-fit: cover;
+
+        @media (min-width: 640px) {
+          height: 220px;
+        }
       }
 
       .staff-info {
-        padding: 1.25rem;
+        padding: 1.15rem;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+
+        @media (min-width: 640px) {
+          padding: 1.25rem;
+        }
 
         h3 {
           font-size: 1.15rem;
@@ -324,12 +378,12 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
           font-size: 0.82rem;
           color: var(--color-accent);
           font-weight: 500;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.65rem;
         }
 
         .staff-bio {
           font-size: 0.85rem;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.15rem;
           flex-grow: 1;
         }
 
@@ -337,6 +391,7 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: 0.5rem;
           padding-top: 0.75rem;
           border-top: 1px solid var(--color-border);
 
@@ -346,17 +401,6 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
             color: #FFB300;
           }
         }
-      }
-    }
-
-    @media (max-width: 900px) {
-      .detail-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .detail-image-wrap {
-        position: static;
-        height: 320px;
       }
     }
   `],

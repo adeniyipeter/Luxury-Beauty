@@ -101,55 +101,131 @@ import { AuthService } from '../../../core/services/auth.service';
       background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--color-border);
-      height: 76px;
+      height: 68px;
       display: flex;
       align-items: center;
+
+      @media (min-width: 900px) {
+        height: 76px;
+      }
     }
 
     .navbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
     }
 
     .logo {
       font-family: var(--font-serif);
-      font-size: 1.6rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--color-primary);
       letter-spacing: -0.02em;
+      white-space: nowrap;
 
       .logo-accent {
         color: var(--color-accent);
         font-style: italic;
       }
+
+      @media (min-width: 640px) {
+        font-size: 1.6rem;
+      }
     }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      padding: 1.5rem 1.25rem 2.5rem;
+      gap: 0.4rem;
+      overflow-y: auto;
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+
+      &.open {
+        display: flex;
+      }
 
       a {
-        font-size: 0.95rem;
+        font-size: 1.05rem;
         font-weight: 500;
-        color: var(--color-text-secondary);
-        position: relative;
-        padding: 0.5rem 0;
+        color: var(--color-text-primary);
+        padding: 0.85rem 1rem;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        transition: var(--transition);
 
         &:hover, &.active {
-          color: var(--color-primary);
+          background: var(--color-surface-alt);
+          color: var(--color-accent);
+        }
+      }
+
+      .mobile-user-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        margin-top: 1rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--color-border);
+
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (min-width: 900px) {
+        display: flex;
+        position: static;
+        background: transparent;
+        backdrop-filter: none;
+        flex-direction: row;
+        padding: 0;
+        gap: 2rem;
+        overflow-y: visible;
+        box-shadow: none;
+        border-bottom: none;
+        z-index: auto;
+
+        a {
+          font-size: 0.95rem;
+          color: var(--color-text-secondary);
+          position: relative;
+          padding: 0.5rem 0;
+          border-radius: 0;
+
+          &:hover, &.active {
+            background: transparent;
+            color: var(--color-primary);
+          }
+
+          &.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
+          }
         }
 
-        &.active::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background-color: var(--color-accent);
-          border-radius: 2px;
+        .mobile-user-actions {
+          display: none;
         }
       }
     }
@@ -157,7 +233,23 @@ import { AuthService } from '../../../core/services/auth.service';
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.5rem;
+
+      @media (min-width: 640px) {
+        gap: 1rem;
+      }
+    }
+
+    .book-cta {
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+      min-height: 38px;
+
+      @media (min-width: 640px) {
+        padding: 0.5rem 1.15rem;
+        font-size: 0.88rem;
+        min-height: 40px;
+      }
     }
 
     .user-menu-wrapper {
@@ -170,18 +262,28 @@ import { AuthService } from '../../../core/services/auth.service';
       gap: 0.5rem;
       background: var(--color-surface-alt);
       border: 1px solid var(--color-border);
-      padding: 0.35rem 0.75rem;
+      padding: 0.3rem 0.6rem;
       border-radius: var(--radius-full);
       cursor: pointer;
       font-family: var(--font-sans);
       font-weight: 500;
       color: var(--color-primary);
+      min-height: 38px;
 
       .avatar-sm {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
         object-fit: cover;
+      }
+
+      .user-name {
+        display: none;
+        font-size: 0.88rem;
+
+        @media (min-width: 500px) {
+          display: inline;
+        }
       }
 
       .chevron-icon {
@@ -194,7 +296,7 @@ import { AuthService } from '../../../core/services/auth.service';
       position: absolute;
       top: calc(100% + 8px);
       right: 0;
-      width: 240px;
+      width: min(250px, calc(100vw - 2rem));
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
@@ -222,7 +324,7 @@ import { AuthService } from '../../../core/services/auth.service';
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 0.6rem 1rem;
+        padding: 0.65rem 1rem;
         font-size: 0.9rem;
         color: var(--color-text-primary);
         background: transparent;
@@ -231,6 +333,7 @@ import { AuthService } from '../../../core/services/auth.service';
         text-align: left;
         cursor: pointer;
         font-family: var(--font-sans);
+        min-height: 44px;
 
         &:hover {
           background-color: var(--color-surface-alt);
@@ -249,53 +352,34 @@ import { AuthService } from '../../../core/services/auth.service';
       }
     }
 
-    .hamburger-btn {
+    .login-btn {
       display: none;
+
+      @media (min-width: 900px) {
+        display: inline-flex;
+      }
+    }
+
+    .hamburger-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
       background: none;
       border: none;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       color: var(--color-primary);
       cursor: pointer;
-    }
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
 
-    .mobile-user-actions {
-      display: none;
-    }
-
-    @media (max-width: 900px) {
-      .hamburger-btn {
-        display: block;
+      &:hover {
+        background: var(--color-surface-alt);
       }
 
-      .login-btn {
+      @media (min-width: 900px) {
         display: none;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 76px;
-        left: 0;
-        right: 0;
-        background: #FFFFFF;
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 1.25rem;
-        border-bottom: 1px solid var(--color-border);
-        box-shadow: var(--shadow-md);
-
-        &.open {
-          display: flex;
-        }
-
-        .mobile-user-actions {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          width: 100%;
-          padding-top: 1rem;
-          border-top: 1px solid var(--color-border);
-        }
       }
     }
   `],

@@ -443,8 +443,12 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
   `,
   styles: [`
     .booking-page {
-      padding: 3rem 0 5rem;
+      padding: 2rem 0 4rem;
       min-height: 80vh;
+
+      @media (min-width: 640px) {
+        padding: 3rem 0 5rem;
+      }
     }
 
     .booking-container {
@@ -456,17 +460,23 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2rem;
+      padding: 0 0.5rem;
+
+      @media (min-width: 640px) {
+        margin-bottom: 3.5rem;
+        padding: 0;
+      }
 
       .step-indicator {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.4rem;
+        gap: 0.25rem;
 
         .step-num {
-          width: 38px;
-          height: 38px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: var(--color-surface-alt);
           color: var(--color-text-secondary);
@@ -474,15 +484,26 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
           align-items: center;
           justify-content: center;
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: 0.85rem;
           border: 1px solid var(--color-border);
           transition: var(--transition);
+
+          @media (min-width: 640px) {
+            width: 38px;
+            height: 38px;
+            font-size: 0.95rem;
+          }
         }
 
         .step-text {
-          font-size: 0.85rem;
+          font-size: 0.72rem;
           font-weight: 500;
           color: var(--color-text-secondary);
+          white-space: nowrap;
+
+          @media (min-width: 640px) {
+            font-size: 0.85rem;
+          }
         }
 
         &.active .step-num {
@@ -506,10 +527,15 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
 
       .step-line {
         flex-grow: 1;
-        max-width: 100px;
+        max-width: 40px;
         height: 2px;
         background: var(--color-border);
-        margin: 0 0.75rem 1.4rem;
+        margin: 0 0.25rem 0.9rem;
+
+        @media (min-width: 640px) {
+          max-width: 100px;
+          margin: 0 0.75rem 1.4rem;
+        }
 
         &.active {
           background: var(--color-primary);
@@ -518,27 +544,39 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
     }
 
     .step-header {
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       h2 { margin-bottom: 0.4rem; }
-      p { font-size: 1.05rem; }
+      p { font-size: 0.98rem; @media (min-width: 640px) { font-size: 1.05rem; } }
     }
 
     .category-filter-row {
       display: flex;
-      gap: 0.6rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.25rem 0.25rem 0.75rem;
+      margin-bottom: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar { display: none; }
+
+      @media (min-width: 768px) {
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow-x: visible;
+      }
 
       .cat-chip {
-        padding: 0.45rem 1.1rem;
+        padding: 0.45rem 1rem;
         border-radius: var(--radius-full);
         background: #FFFFFF;
         border: 1px solid var(--color-border);
         font-family: var(--font-sans);
-        font-size: 0.88rem;
+        font-size: 0.85rem;
         cursor: pointer;
         transition: var(--transition);
+        white-space: nowrap;
+        min-height: 36px;
 
         &.active {
           background: var(--color-primary);
@@ -557,16 +595,24 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
       border: 2px solid transparent;
 
       .service-thumb {
-        height: 180px;
+        height: 160px;
         width: 100%;
         object-fit: cover;
+
+        @media (min-width: 640px) {
+          height: 180px;
+        }
       }
 
       .selectable-info {
-        padding: 1.25rem;
+        padding: 1.15rem;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+
+        @media (min-width: 640px) {
+          padding: 1.25rem;
+        }
 
         .meta-line {
           display: flex;
@@ -620,13 +666,21 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
 
       .staff-photo {
         width: 100%;
-        height: 220px;
+        height: 200px;
         object-fit: cover;
+
+        @media (min-width: 640px) {
+          height: 220px;
+        }
       }
 
       .staff-details {
-        padding: 1.25rem;
+        padding: 1.15rem;
         position: relative;
+
+        @media (min-width: 640px) {
+          padding: 1.25rem;
+        }
 
         .rating-badge {
           position: absolute;
@@ -657,12 +711,22 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
     /* DateTime layout */
     .datetime-layout {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+
+      @media (min-width: 800px) {
+        grid-template-columns: 1fr 1.25fr;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+      }
 
       .calendar-card, .slots-card {
-        padding: 1.75rem;
+        padding: 1.25rem;
+
+        @media (min-width: 640px) {
+          padding: 1.75rem;
+        }
 
         h3 {
           font-size: 1.2rem;
@@ -678,8 +742,8 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
       }
 
       .date-picker-input {
-        font-size: 1.05rem;
-        padding: 0.85rem;
+        font-size: 1rem;
+        padding: 0.75rem;
         cursor: pointer;
         margin-bottom: 1.25rem;
       }
@@ -691,7 +755,7 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
         margin-bottom: 1.5rem;
 
         .date-pill {
-          padding: 0.6rem 0.4rem;
+          padding: 0.55rem 0.35rem;
           border-radius: var(--radius-sm);
           background: var(--color-surface-alt);
           border: 1px solid var(--color-border);
@@ -701,8 +765,8 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
           align-items: center;
           transition: var(--transition);
 
-          .day-name { font-size: 0.72rem; text-transform: uppercase; color: var(--color-text-secondary); }
-          .day-num { font-size: 0.9rem; font-weight: 600; color: var(--color-primary); }
+          .day-name { font-size: 0.7rem; text-transform: uppercase; color: var(--color-text-secondary); }
+          .day-num { font-size: 0.88rem; font-weight: 600; color: var(--color-primary); }
 
           &.active {
             background: var(--color-primary);
@@ -723,32 +787,39 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
         padding: 0.75rem;
         border-radius: var(--radius-sm);
 
-        i { color: var(--color-accent); font-size: 1.1rem; }
+        i { color: var(--color-accent); font-size: 1.1rem; flex-shrink: 0; }
       }
 
       .slots-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1.5rem;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
 
         .selected-date-badge {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 600;
           color: var(--color-accent);
           background: var(--color-accent-light);
-          padding: 0.3rem 0.75rem;
+          padding: 0.3rem 0.65rem;
           border-radius: var(--radius-full);
+          white-space: nowrap;
         }
       }
 
       .slots-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+
+        @media (min-width: 480px) {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.75rem;
+        }
 
         .slot-btn {
-          padding: 0.75rem 0.5rem;
+          padding: 0.65rem 0.4rem;
           border-radius: var(--radius-sm);
           background: #FFFFFF;
           border: 1px solid var(--color-border);
@@ -758,8 +829,8 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
           cursor: pointer;
           transition: var(--transition);
 
-          .slot-time { font-size: 1rem; font-weight: 600; color: var(--color-primary); }
-          .slot-status { font-size: 0.72rem; color: var(--color-success); }
+          .slot-time { font-size: 0.95rem; font-weight: 600; color: var(--color-primary); }
+          .slot-status { font-size: 0.7rem; color: var(--color-success); }
 
           &:hover:not(:disabled) {
             border-color: var(--color-accent);
@@ -782,7 +853,7 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
       }
 
       .loading-state, .empty-slots {
-        padding: 3rem 1.5rem;
+        padding: 2.5rem 1rem;
         text-align: center;
         color: var(--color-text-secondary);
 
@@ -793,13 +864,24 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
     /* Review Grid */
     .review-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+
+      @media (min-width: 800px) {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+      }
 
       .customer-info-box, .order-summary-box {
-        padding: 2rem;
-        h3 { margin-bottom: 1.5rem; font-size: 1.25rem; }
+        padding: 1.25rem;
+
+        @media (min-width: 640px) {
+          padding: 2rem;
+        }
+
+        h3 { margin-bottom: 1.25rem; font-size: 1.2rem; }
       }
 
       .login-notice {
@@ -812,7 +894,7 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
         font-size: 0.85rem;
         margin-bottom: 1.5rem;
 
-        i { color: var(--color-info); }
+        i { color: var(--color-info); flex-shrink: 0; }
         a { color: var(--color-accent); font-weight: 600; text-decoration: underline; }
       }
 
@@ -901,71 +983,115 @@ import { Service, ServiceCategory, StaffProfile, TimeSlot, Appointment } from '@
     .confirmation-box {
       max-width: 640px;
       margin: 0 auto;
-      padding: 3.5rem 2.5rem;
+      padding: 2.25rem 1.25rem;
 
-      .success-icon-wrap {
-        font-size: 3.5rem;
-        color: var(--color-success);
-        margin-bottom: 1rem;
+      @media (min-width: 640px) {
+        padding: 3.5rem 2.5rem;
       }
 
-      h2 { margin: 1rem 0 0.5rem; }
-      .ref-sub { font-size: 0.95rem; }
+      .success-icon-wrap {
+        font-size: 3rem;
+        color: var(--color-success);
+        margin-bottom: 0.75rem;
+
+        @media (min-width: 640px) {
+          font-size: 3.5rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      h2 { margin: 0.75rem 0 0.4rem; font-size: clamp(1.4rem, 4vw, 2rem); }
+      .ref-sub { font-size: 0.92rem; }
 
       .booking-ref-pill {
         display: inline-block;
         font-family: monospace;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 700;
         background: var(--color-surface-alt);
         border: 2px dashed var(--color-accent);
         color: var(--color-primary);
-        padding: 0.5rem 1.5rem;
+        padding: 0.45rem 1.25rem;
         border-radius: var(--radius-sm);
-        margin: 1rem 0 2rem;
+        margin: 0.75rem 0 1.5rem;
+        word-break: break-all;
+
+        @media (min-width: 640px) {
+          font-size: 1.4rem;
+          padding: 0.5rem 1.5rem;
+          margin: 1rem 0 2rem;
+        }
       }
 
       .confirm-details-card {
         background: var(--color-surface-alt);
         border-radius: var(--radius-sm);
-        padding: 1.5rem;
+        padding: 1.25rem;
         text-align: left;
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.5rem;
+
+        @media (min-width: 640px) {
+          padding: 1.5rem;
+          margin-bottom: 1.75rem;
+        }
 
         .c-row {
           display: flex;
           justify-content: space-between;
           margin-bottom: 0.6rem;
-          font-size: 0.92rem;
+          font-size: 0.9rem;
+          gap: 0.5rem;
 
           span { color: var(--color-text-secondary); }
-          strong { color: var(--color-primary); }
+          strong { color: var(--color-primary); text-align: right; }
         }
       }
 
       .confirmation-note {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         color: var(--color-text-secondary);
-        margin-bottom: 2rem;
+        margin-bottom: 1.75rem;
       }
 
       .confirm-actions {
         display: flex;
-        justify-content: center;
-        gap: 1rem;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .btn {
+          width: 100%;
+        }
+
+        @media (min-width: 540px) {
+          flex-direction: row;
+          justify-content: center;
+          gap: 1rem;
+
+          .btn {
+            width: auto;
+          }
+        }
       }
     }
 
     .step-actions {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column-reverse;
+      gap: 0.75rem;
       margin-top: 2rem;
-    }
 
-    @media (max-width: 800px) {
-      .datetime-layout, .review-grid {
-        grid-template-columns: 1fr;
+      .btn {
+        width: 100%;
+      }
+
+      @media (min-width: 640px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .btn {
+          width: auto;
+        }
       }
     }
   `],

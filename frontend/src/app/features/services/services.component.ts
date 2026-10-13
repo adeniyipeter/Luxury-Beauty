@@ -100,55 +100,81 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
   styles: [`
     .page-header {
       background: linear-gradient(180deg, #FFFFFF 0%, var(--color-bg) 100%);
-      padding: 4rem 0 3rem;
+      padding: 2.75rem 0 2rem;
       border-bottom: 1px solid var(--color-border);
 
+      @media (min-width: 768px) {
+        padding: 4rem 0 3rem;
+      }
+
       h1 {
-        margin: 0.75rem 0 0.5rem;
+        margin: 0.5rem 0;
       }
 
       p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         max-width: 600px;
         margin: 0 auto;
+
+        @media (min-width: 640px) {
+          font-size: 1.1rem;
+        }
       }
     }
 
     .filter-section {
-      padding: 2rem 0;
+      padding: 1.25rem 0;
       background: #FFFFFF;
       border-bottom: 1px solid var(--color-border);
       position: sticky;
-      top: 76px;
+      top: 68px;
       z-index: 100;
+
+      @media (min-width: 900px) {
+        top: 76px;
+        padding: 1.75rem 0;
+      }
     }
 
     .filter-bar {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
     }
 
     .category-pills {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.5rem;
       overflow-x: auto;
       padding-bottom: 0.25rem;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .pill-btn {
         background: var(--color-surface-alt);
         border: 1px solid var(--color-border);
         color: var(--color-text-primary);
         font-family: var(--font-sans);
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         font-weight: 500;
-        padding: 0.5rem 1.15rem;
+        padding: 0.45rem 1rem;
         border-radius: var(--radius-full);
         cursor: pointer;
         white-space: nowrap;
         transition: var(--transition);
+        min-height: 38px;
 
         &:hover {
           border-color: var(--color-accent);
@@ -165,7 +191,12 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
     .search-input-wrap {
       position: relative;
-      min-width: 280px;
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: 300px;
+        flex-shrink: 0;
+      }
 
       .search-icon {
         position: absolute;
@@ -178,9 +209,10 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
       .search-input {
         padding-left: 2.5rem;
-        padding-right: 2rem;
+        padding-right: 2.2rem;
         border-radius: var(--radius-full);
-        font-size: 0.88rem;
+        font-size: 0.9rem;
+        width: 100%;
       }
 
       .clear-search-btn {
@@ -192,19 +224,27 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
         border: none;
         color: var(--color-text-secondary);
         cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
     .services-content-section {
-      padding: 3rem 0 5rem;
+      padding: 2rem 0 4rem;
+
+      @media (min-width: 768px) {
+        padding: 3rem 0 5rem;
+      }
     }
 
     .result-count {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-bottom: 2rem;
-      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
       color: var(--color-text-secondary);
 
       strong {

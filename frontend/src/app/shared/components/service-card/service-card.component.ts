@@ -58,8 +58,12 @@ import { Service } from '../../../core/models';
     .card-image-wrap {
       position: relative;
       width: 100%;
-      height: 220px;
+      height: 180px;
       overflow: hidden;
+
+      @media (min-width: 640px) {
+        height: 220px;
+      }
 
       .card-img {
         width: 100%;
@@ -70,17 +74,24 @@ import { Service } from '../../../core/models';
 
       .category-pill {
         position: absolute;
-        top: 1rem;
-        left: 1rem;
+        top: 0.75rem;
+        left: 0.75rem;
         background: rgba(43, 33, 30, 0.85);
         backdrop-filter: blur(4px);
         color: #FFFFFF;
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        padding: 0.3rem 0.75rem;
+        padding: 0.25rem 0.65rem;
         border-radius: var(--radius-full);
+
+        @media (min-width: 640px) {
+          top: 1rem;
+          left: 1rem;
+          font-size: 0.75rem;
+          padding: 0.3rem 0.75rem;
+        }
       }
     }
 
@@ -89,10 +100,14 @@ import { Service } from '../../../core/models';
     }
 
     .card-body {
-      padding: 1.5rem;
+      padding: 1.15rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+
+      @media (min-width: 640px) {
+        padding: 1.5rem;
+      }
     }
 
     .meta-row {
@@ -115,16 +130,24 @@ import { Service } from '../../../core/models';
 
       .price {
         font-family: var(--font-serif);
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         font-weight: 700;
         color: var(--color-primary);
+
+        @media (min-width: 640px) {
+          font-size: 1.25rem;
+        }
       }
     }
 
     .service-title {
-      font-size: 1.2rem;
-      margin-bottom: 0.6rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
       line-height: 1.35;
+
+      @media (min-width: 640px) {
+        font-size: 1.2rem;
+      }
 
       a:hover {
         color: var(--color-accent);
@@ -132,10 +155,10 @@ import { Service } from '../../../core/models';
     }
 
     .service-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--color-text-secondary);
       line-height: 1.5;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -159,9 +182,15 @@ import { Service } from '../../../core/models';
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 1rem;
+      gap: 0.5rem;
+      padding-top: 0.85rem;
       border-top: 1px solid var(--color-border);
       margin-top: auto;
+
+      .btn {
+        flex: 1;
+        text-align: center;
+      }
     }
   `],
 })

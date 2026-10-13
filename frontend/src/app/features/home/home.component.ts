@@ -250,60 +250,100 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
   styles: [`
     /* Hero */
     .hero-section {
-      padding: 4.5rem 0 3.5rem;
+      padding: 2.5rem 0 2rem;
       background: linear-gradient(180deg, #FFFFFF 0%, var(--color-bg) 100%);
       overflow: hidden;
+
+      @media (min-width: 768px) {
+        padding: 4.5rem 0 3.5rem;
+      }
     }
 
     .hero-container {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1fr;
       align-items: center;
-      gap: 4rem;
+      gap: 2.5rem;
+
+      @media (min-width: 992px) {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 4rem;
+      }
     }
 
     .hero-eyebrow {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--color-accent);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
       display: inline-block;
+
+      @media (min-width: 640px) {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+      }
     }
 
     .hero-title {
-      font-size: 3.5rem;
+      font-size: clamp(2.2rem, 6.5vw, 3.5rem);
       line-height: 1.15;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       color: var(--color-primary);
 
       .italic-serif {
         font-style: italic;
         color: var(--color-secondary);
       }
+
+      @media (min-width: 640px) {
+        margin-bottom: 1.25rem;
+      }
     }
 
     .hero-subtext {
-      font-size: 1.1rem;
+      font-size: 0.98rem;
       color: var(--color-text-secondary);
-      line-height: 1.7;
-      margin-bottom: 2rem;
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
       max-width: 540px;
+
+      @media (min-width: 640px) {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
     }
 
     .hero-actions {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 3rem;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+
+      .btn {
+        width: 100%;
+      }
+
+      @media (min-width: 540px) {
+        flex-direction: row;
+        gap: 1rem;
+        margin-bottom: 2.75rem;
+
+        .btn {
+          width: auto;
+        }
+      }
     }
 
     .hero-stats {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      padding-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      padding-top: 1.25rem;
       border-top: 1px solid var(--color-border);
+      text-align: center;
 
       .stat-item {
         display: flex;
@@ -311,21 +351,42 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
         .stat-number {
           font-family: var(--font-serif);
-          font-size: 1.5rem;
+          font-size: 1.3rem;
           font-weight: 700;
           color: var(--color-primary);
+
+          @media (min-width: 640px) {
+            font-size: 1.5rem;
+          }
         }
 
         .stat-label {
-          font-size: 0.82rem;
+          font-size: 0.75rem;
           color: var(--color-text-secondary);
+
+          @media (min-width: 640px) {
+            font-size: 0.82rem;
+          }
         }
       }
 
       .stat-divider {
-        width: 1px;
-        height: 36px;
-        background: var(--color-border);
+        display: none;
+      }
+
+      @media (min-width: 640px) {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 2rem;
+        padding-top: 1.5rem;
+
+        .stat-divider {
+          display: block;
+          width: 1px;
+          height: 36px;
+          background: var(--color-border);
+        }
       }
     }
 
@@ -336,7 +397,15 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
         border-radius: var(--radius-lg);
         overflow: hidden;
         box-shadow: var(--shadow-lg);
-        height: 520px;
+        height: 300px;
+
+        @media (min-width: 640px) {
+          height: 420px;
+        }
+
+        @media (min-width: 992px) {
+          height: 520px;
+        }
 
         .hero-img {
           width: 100%;
@@ -346,18 +415,30 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       }
 
       .floating-card {
-        position: absolute;
-        bottom: 2rem;
-        left: -2rem;
+        position: static;
+        margin-top: 1rem;
+        width: 100%;
         background: #FFFFFF;
-        padding: 1.25rem 1.5rem;
+        padding: 1rem 1.25rem;
         border-radius: var(--radius-md);
-        box-shadow: var(--shadow-lg);
+        box-shadow: var(--shadow-md);
         display: flex;
         align-items: center;
         gap: 1rem;
         border: 1px solid var(--color-border);
-        max-width: 320px;
+
+        @media (min-width: 768px) {
+          position: absolute;
+          bottom: 2rem;
+          left: -1rem;
+          margin-top: 0;
+          max-width: 320px;
+          box-shadow: var(--shadow-lg);
+        }
+
+        @media (min-width: 1200px) {
+          left: -2rem;
+        }
 
         .floating-icon {
           width: 44px;
@@ -388,19 +469,38 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
     /* Sections general */
     .section {
-      padding: 5rem 0;
+      padding: 3rem 0;
+
+      @media (min-width: 768px) {
+        padding: 5rem 0;
+      }
     }
 
     .section-header {
-      margin-bottom: 2.75rem;
+      margin-bottom: 2rem;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+
+      .view-all-btn {
+        align-self: flex-start;
+      }
 
       &.text-center {
-        flex-direction: column;
         align-items: center;
         text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2.75rem;
+
+        .view-all-btn {
+          align-self: auto;
+        }
       }
 
       h2 {
@@ -409,8 +509,12 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       }
 
       p {
-        font-size: 1.05rem;
+        font-size: 1rem;
         max-width: 600px;
+
+        @media (min-width: 640px) {
+          font-size: 1.05rem;
+        }
       }
     }
 
@@ -423,8 +527,12 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
       .cat-img-wrap {
         position: relative;
-        height: 200px;
+        height: 180px;
         overflow: hidden;
+
+        @media (min-width: 640px) {
+          height: 200px;
+        }
 
         .cat-img {
           width: 100%;
@@ -445,19 +553,23 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       }
 
       .cat-info {
-        padding: 1.25rem;
+        padding: 1.15rem;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
 
+        @media (min-width: 640px) {
+          padding: 1.25rem;
+        }
+
         h3 {
-          font-size: 1.2rem;
-          margin-bottom: 0.5rem;
+          font-size: 1.15rem;
+          margin-bottom: 0.4rem;
         }
 
         p {
           font-size: 0.88rem;
-          margin-bottom: 1rem;
+          margin-bottom: 0.85rem;
           flex-grow: 1;
         }
 
@@ -476,54 +588,86 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
     .bridal-banner {
       background: linear-gradient(135deg, var(--color-primary) 0%, #3d2f2b 100%);
       border-radius: var(--radius-lg);
-      padding: 4rem;
+      padding: 2rem 1.25rem;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1fr;
       align-items: center;
-      gap: 3rem;
+      gap: 2rem;
       color: #FFFFFF;
       overflow: hidden;
+
+      @media (min-width: 640px) {
+        padding: 2.75rem 2rem;
+      }
+
+      @media (min-width: 992px) {
+        grid-template-columns: 1.2fr 0.8fr;
+        padding: 4rem;
+        gap: 3rem;
+      }
 
       .bridal-content {
         h2 {
           color: #FFFFFF;
-          font-size: 2.4rem;
+          font-size: clamp(1.6rem, 4vw, 2.4rem);
           margin: 0.75rem 0 1rem;
         }
 
         p {
           color: #DDD4CF;
-          font-size: 1.05rem;
-          line-height: 1.7;
-          margin-bottom: 1.75rem;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+
+          @media (min-width: 640px) {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.75rem;
+          }
         }
 
         .bridal-perks {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
-          margin-bottom: 2rem;
+          gap: 0.65rem;
+          margin-bottom: 1.75rem;
 
           .perk {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: #FFFFFF;
 
             i {
               color: var(--color-accent);
               font-size: 0.9rem;
+              flex-shrink: 0;
             }
+          }
+        }
+
+        .btn {
+          width: 100%;
+          @media (min-width: 540px) {
+            width: auto;
           }
         }
       }
 
       .bridal-image-wrap {
-        height: 400px;
+        height: 240px;
         border-radius: var(--radius-md);
         overflow: hidden;
         box-shadow: var(--shadow-lg);
+
+        @media (min-width: 640px) {
+          height: 320px;
+        }
+
+        @media (min-width: 992px) {
+          height: 400px;
+        }
 
         .bridal-img {
           width: 100%;
@@ -535,28 +679,32 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
     /* Why Us */
     .why-card {
-      padding: 2rem 1.5rem;
+      padding: 1.75rem 1.25rem;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
 
+      @media (min-width: 640px) {
+        padding: 2rem 1.5rem;
+      }
+
       .why-icon {
-        width: 60px;
-        height: 60px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
         background: var(--color-surface-alt);
         color: var(--color-accent);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
-        margin-bottom: 1.25rem;
+        font-size: 1.35rem;
+        margin-bottom: 1rem;
       }
 
       h3 {
         font-size: 1.15rem;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.5rem;
       }
 
       p {
@@ -567,10 +715,14 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
     /* Gallery preview */
     .gallery-item {
-      height: 320px;
+      height: 240px;
       position: relative;
       overflow: hidden;
       cursor: pointer;
+
+      @media (min-width: 640px) {
+        height: 320px;
+      }
 
       img {
         width: 100%;
@@ -586,32 +738,36 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       .gallery-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, transparent 50%, rgba(43, 33, 30, 0.9) 100%);
+        background: linear-gradient(180deg, transparent 40%, rgba(43, 33, 30, 0.9) 100%);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 1.5rem;
+        padding: 1.25rem;
         color: #FFFFFF;
 
         h4 {
           color: #FFFFFF;
-          margin-top: 0.4rem;
-          font-size: 1.1rem;
+          margin-top: 0.35rem;
+          font-size: 1.05rem;
         }
       }
     }
 
     /* Testimonials */
     .test-card {
-      padding: 2rem;
+      padding: 1.5rem 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
+      @media (min-width: 640px) {
+        padding: 2rem;
+      }
+
       .rating-stars {
         color: #FFB300;
         font-size: 0.9rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.85rem;
         display: flex;
         gap: 0.25rem;
       }
@@ -619,9 +775,9 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
       .review-text {
         font-style: italic;
         color: var(--color-text-primary);
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         line-height: 1.6;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
       }
 
       .reviewer-info {
@@ -630,15 +786,15 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
         gap: 0.75rem;
 
         .reviewer-avatar {
-          width: 44px;
-          height: 44px;
+          width: 42px;
+          height: 42px;
           border-radius: 50%;
           object-fit: cover;
         }
 
         strong {
           display: block;
-          font-size: 0.92rem;
+          font-size: 0.9rem;
           color: var(--color-primary);
         }
 
@@ -654,52 +810,63 @@ import { ServiceCardComponent } from '@shared/components/service-card/service-ca
 
     /* CTA Box */
     .cta-banner-section {
-      padding: 3rem 0;
+      padding: 2rem 0;
+
+      @media (min-width: 768px) {
+        padding: 3rem 0;
+      }
 
       .cta-box {
         background: var(--color-surface);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-lg);
-        padding: 4rem 2rem;
+        padding: 2.5rem 1.25rem;
         text-align: center;
         box-shadow: var(--shadow-md);
 
+        @media (min-width: 640px) {
+          padding: 4rem 2rem;
+        }
+
         h2 {
-          font-size: 2.4rem;
+          font-size: clamp(1.6rem, 4.5vw, 2.4rem);
           margin-bottom: 0.75rem;
         }
 
         p {
-          font-size: 1.1rem;
+          font-size: 1rem;
           max-width: 580px;
-          margin: 0 auto 2rem;
+          margin: 0 auto 1.5rem;
+
+          @media (min-width: 640px) {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+          }
         }
 
         .cta-buttons {
           display: flex;
-          justify-content: center;
-          gap: 1rem;
+          flex-direction: column;
+          gap: 0.75rem;
+
+          .btn {
+            width: 100%;
+          }
+
+          @media (min-width: 540px) {
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+
+            .btn {
+              width: auto;
+            }
+          }
         }
 
         .cta-contact-btn {
           background: #FFFFFF;
         }
-      }
-    }
-
-    @media (max-width: 992px) {
-      .hero-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .hero-title {
-        font-size: 2.75rem;
-      }
-
-      .bridal-banner {
-        grid-template-columns: 1fr;
-        padding: 2.5rem;
       }
     }
   `],
